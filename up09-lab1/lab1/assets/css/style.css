@@ -21,7 +21,14 @@ body{
 form:not(.logout){
    width: 70vw;
    display: grid;
-   grid-template-rows: auto;
+   grid-template-columns: repeat(1,auto);
+   div{
+    display: grid;
+    grid-template-columns: auto;
+    input,textarea{
+        margin-top: 3px;
+    }
+   }
    gap: 10px 10px;
 
    br{
