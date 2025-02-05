@@ -3,16 +3,19 @@
 {% block title %} Вход {% endblock %} 
 
 {% block content %}
+    <div class="block">
+        <h1>Вход</h1>
+        <br>
+        <form class="form-with-validation login" action="/users/login/" method="post">
 
-    <h1>Вход</h1>
-    <br>
-    <form class="form-with-validation login" action="/users/login/" method="post">
-
-        {% csrf_token %} 
-        
-        {{ form }}
-        <br><br>
-        <button class="form-submit">Отправить</button>
-    </form>
-
+            {% csrf_token %} 
+            
+            {{ form }}
+            <br><br>
+            <button class="form-submit">Отправить</button>
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}" />
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}

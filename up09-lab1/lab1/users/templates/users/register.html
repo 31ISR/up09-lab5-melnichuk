@@ -3,17 +3,17 @@
 {% block title %} Регистрация {% endblock %} 
 
 {%block content %}
+    <div class="block">
+        <h1>Регистрация нового пользователя</h1>
+        <br>
+        <form class="form-with-validation" action="/users/register/" method="post">
 
-    <h1>Регистрация нового пользователя</h1>
-    <br>
-    <form class="form-with-validation" action="/users/register/" method="post">
+            {% csrf_token %} 
 
-        {% csrf_token %} 
+            {{ form }}
+            <br><br>
+            <button class="form-submit">Отправить</button>
 
-        {{ form }}
-        <br><br>
-        <button class="form-submit">Отправить</button>
-
-    </form>
-
+        </form>
+    </div>
 {% endblock %}

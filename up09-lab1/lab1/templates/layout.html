@@ -8,6 +8,7 @@
     <script src="{% static 'js/script.js' %}" defer></script>
     <title>{% block title%} Приложение Django {% endblock%}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body>
@@ -17,8 +18,20 @@
             <li><a href="/about/">Обо мне</a></li>
             <li><a href="{% url 'posts:list' %}">Посты</a></li>
             <li><a href="{% url 'comms:list' %}">Группы</a></li>
-            <li class="reg_log"><a href="{% url 'users:register_view' %}">Регистрация</a></li>
-            <li class="reg_log"><a href="{% url 'users:login_view' %}">Войти</a></li>
+            <!--<li class="reg_log"><a href="{% url 'users:register_view' %}">Регистрация</a></li>
+            <li class="reg_log"><a href="{% url 'users:login_view' %}">Войти</a></li>-->
+            <li><a href="{% url 'posts:new-post' %}">Новый пост</a> | <a href="{% url 'comms:new-comm' %}">Новая группа</a></li>
+            {% if user.is_authenticated %}
+            
+                <li class="exit"><form class="logout" action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" title="User Logout">Выйти</button>
+                </form></li>
+            {% else %}
+                <li class="reg_log">
+                    <a href="{% url 'users:register_view' %}">Зарегистрироваться</a> / <a href="{% url 'users:login_view' %}">Войти</a></li>
+            {% endif %}
+        
         </ul>
     </nav>
 
